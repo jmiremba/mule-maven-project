@@ -1,9 +1,9 @@
-package com.mulesoft.training;
+package org.dcsdk12.mulesoft.training;
 
 import org.junit.Test;
 import org.mule.tck.junit4.FunctionalTestCase;
 
-public class HelloMavenTest extends FunctionalTestCase {
+public class MavenProjectTest extends FunctionalTestCase {
 
 	@Override
 	protected String getConfigFile() {
