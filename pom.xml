@@ -5,7 +5,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dcsdk12.mulesoft.training</groupId>
-	<artifactId>maven-project</artifactId>
+	<artifactId>maven-project-jubileem</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule</packaging>
 	<name>Mule Maven-Based Application</name>
@@ -16,6 +16,9 @@
 
 		<mule.version>3.8.4</mule.version>
 		<mule.tools.version>1.2</mule.tools.version>
+		
+		<anypoint.platform.username>jmiremba</anypoint.platform.username>
+		<anypoint.platform.password>{Provide_On_Commandline}</anypoint.platform.password>
 	</properties>
 
 	<build>
@@ -55,6 +58,29 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+			    <groupId>org.mule.tools.maven</groupId>
+			    <artifactId>mule-maven-plugin</artifactId>
+			    <version>2.0</version>
+			    <configuration>
+			        <deploymentType>cloudhub</deploymentType>
+			        <muleVersion>${mule.version}</muleVersion> 
+			        <username>${anypoint.platform.username}</username>
+			        <password>${anypoint.platform.password}</password>
+				 	<workerType>Micro</workerType>
+			        <redeploy>true</redeploy>
+			        <environment>Production</environment>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <id>deploy</id>
+			            <phase>deploy</phase>
+			            <goals>
+			                <goal>deploy</goal>
+			            </goals>
+			        </execution>
+			    </executions>
 			</plugin>
 		</plugins>
 	</build>

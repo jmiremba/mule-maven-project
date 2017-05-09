@@ -21,7 +21,7 @@ public class MavenProjectTest extends FunctionalTestCase {
 	}
 	
 	@Test
-	public void retrieveFlightsAddsAppropriateHeader() throws Exception {
+	public void retrieveFlightContentType() throws Exception {
 		MuleEvent event = runFlow("RetrieveFlightsFlow");
 		String contentType = event.getMessage().getOutboundProperty("Content-Type");
 		assertEquals("application/json", contentType);
