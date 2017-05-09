@@ -1,6 +1,9 @@
 package org.dcsdk12.mulesoft.training;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
+import org.mule.api.MuleEvent;
 import org.mule.tck.junit4.FunctionalTestCase;
 
 public class MavenProjectTest extends FunctionalTestCase {
@@ -15,5 +18,12 @@ public class MavenProjectTest extends FunctionalTestCase {
 	public void mavenFlowDefaultResponse() throws Exception {
 		// Execute a flow and expect a response.
 		runFlowAndExpect("MavenFlow", "This is a simple Maven-configured Mule application.");
+	}
+	
+	@Test
+	public void retrieveFlightsAddsAppropriateHeader() throws Exception {
+		MuleEvent event = runFlow("RetrieveFlightsFlow");
+		String contentType = event.getMessage().getOutboundProperty("Content-Type");
+		assertEquals("application/json", contentType);
 	}
 }
